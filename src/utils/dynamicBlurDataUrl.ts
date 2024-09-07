@@ -3,7 +3,7 @@ import type { StaticImageData } from "next/image";
 const baseUrl =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000/"
-    : process.env.NEXT_PUBLIC_DOMAIN;
+    : process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function dynamicBlurDataUrl(url: string | StaticImageData) {
   // Check if url is an object (StaticImageData) and extract the src property

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: `https://traveltownholidays.com/contact`,
     images: [
       {
-        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529270/traveltownholidays/main%20page%20images/contact-3994018_pnkelz.jpg",
+        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529270/Travel%20Town%202024/Home%20Page%20images/contact-3994018_pnkelz.jpg",
         width: 800,
         height: 600,
         alt: "phone, gmail chat icons",
@@ -30,7 +30,7 @@ export default function page() {
     <main>
       <PageHero
         src={
-          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529270/traveltownholidays/main%20page%20images/contact-3994018_pnkelz.jpg"
+          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529270/Travel%20Town%202024/Home%20Page%20images/contact-3994018_pnkelz.jpg"
         }
         alt="phone, gmail chat icons"
       />

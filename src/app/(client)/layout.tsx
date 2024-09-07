@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     default: "Travel Town Holidays - Discover Your Dream Vacation",
   },
   applicationName: "Travel Town Holidays",
+  metadataBase: new URL("https://localhost:3000/"),
   openGraph: {
     url: "https://traveltownholidays.com",
     siteName: "traveltownholidays",

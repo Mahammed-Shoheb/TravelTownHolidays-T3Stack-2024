@@ -101,23 +101,21 @@ export default function PackageDetails({
       sectionOrder.indexOf(b.sectionName.toLowerCase() as SectionNames),
   );
 
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState(sortedDetails[0]?.sectionName.toLowerCase());
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    if (sortedDetails[0]?.sectionName)
-      setTab(sortedDetails[0]?.sectionName.toLowerCase());
+  const handleScroll = () => {
+    if (window.scrollY > 250) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
 
-    const handleScroll = () => {
-      if (window.scrollY > 250) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [sortedDetails]);
+  }, []);
 
   const handleNavClick = () => {
     scrollTo("#packageDetails", 80);
@@ -135,6 +133,7 @@ export default function PackageDetails({
               sections[sectionName.toLowerCase() as SectionNames].icon;
             return (
               <button
+                type="button"
                 onClick={() => setTab(sectionName.toLowerCase())}
                 className={`flex flex-col items-center justify-center gap-1 capitalize ${tab == sectionName.toLowerCase() && ""}`}
                 role="tab"

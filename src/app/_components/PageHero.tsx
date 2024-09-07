@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { StaticImageData } from "next/image";
+// import type { StaticImageData } from "next/image";
 import Breadcrumbs from "./Breadcrumbs";
 import { dynamicBlurDataUrl } from "~/utils/dynamicBlurDataUrl";
 
@@ -9,7 +9,7 @@ export default async function PageHero({
   width,
   height,
 }: {
-  src: StaticImageData | string;
+  src: string;
   alt: string;
   width?: number;
   height?: number;

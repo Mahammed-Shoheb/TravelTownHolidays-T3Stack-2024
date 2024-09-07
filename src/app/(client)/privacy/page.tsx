@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: "https://traveltownholidays.com/privacy",
     images: [
       {
-        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572322/traveltownholidays/main%20page%20images/regulation-3246979_1920_xnm25n.jpg",
+        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572322/Travel%20Town%202024/Home%20Page%20images/regulation-3246979_1920_xnm25n.jpg",
         width: 800,
         height: 600,
         alt: "hands of a person holding phone with in the side security related network map",
@@ -29,7 +29,7 @@ export default function page() {
     <main>
       <PageHero
         src={
-          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572322/traveltownholidays/main%20page%20images/regulation-3246979_1920_xnm25n.jpg"
+          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572322/Travel%20Town%202024/Home%20Page%20images/regulation-3246979_1920_xnm25n.jpg"
         }
         alt="hands of a person holding phone with in the side security related network map"
       />

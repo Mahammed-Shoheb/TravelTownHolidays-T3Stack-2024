@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: "https://traveltownholidays.com/about",
     images: [
       {
-        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529271/traveltownholidays/main%20page%20images/target-group-3460039_b4pqqt.jpg",
+        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529271/Travel%20Town%202024/Home%20Page%20images/target-group-3460039_b4pqqt.jpg",
         width: 800,
         height: 600,
         alt: "people in a circle looking down shown through magnifying glass",
@@ -29,7 +29,7 @@ export default function page() {
     <main>
       <PageHero
         src={
-          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529271/traveltownholidays/main%20page%20images/target-group-3460039_b4pqqt.jpg"
+          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724529271/Travel%20Town%202024/Home%20Page%20images/target-group-3460039_b4pqqt.jpg"
         }
         alt="people in a circle looking down shown through magnifying glass"
       />

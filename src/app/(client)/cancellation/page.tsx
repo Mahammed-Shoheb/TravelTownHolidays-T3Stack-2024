@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: "https://traveltownholidays.com/cancellation",
     images: [
       {
-        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572326/traveltownholidays/main%20page%20images/laptop-3196481_bbbarv.jpg",
+        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572326/Travel%20Town%202024/Home%20Page%20images/laptop-3196481_bbbarv.jpg",
         width: 800,
         height: 600,
         alt: "two people hands one holding paper and pen, other person writing and holding a pen",
@@ -29,7 +29,7 @@ export default function page() {
     <main>
       <PageHero
         src={
-          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572326/traveltownholidays/main%20page%20images/laptop-3196481_bbbarv.jpg"
+          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724572326/Travel%20Town%202024/Home%20Page%20images/laptop-3196481_bbbarv.jpg"
         }
         alt="two people hands one holding paper and pen, other person writing and holding a pen"
       />
