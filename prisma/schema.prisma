@@ -1,0 +1,170 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(uuid())
+    email     String   @unique
+    password  String
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+
+    @@index([email])
+}
+
+model Category {
+    id               String    @id @default(uuid())
+    name             String    @unique
+    description      String[]
+    image            String
+    imageDescription String
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @updatedAt
+    packages         Package[]
+}
+
+model Destination {
+    id               String    @id @default(uuid())
+    name             String    @unique
+    description      String[]
+    image            String
+    imageDescription String
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @updatedAt
+    packages         Package[]
+    featured         Boolean   @default(false)
+    domestic         Boolean   @default(false)
+}
+
+model Package {
+    id               String      @id @default(uuid())
+    name             String      @unique
+    price            Int
+    perCouple        Boolean     @default(false)
+    places           String
+    days             String
+    image            String
+    imageDescription String
+    destination      Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+    destinationId    String
+    categories       Category[]
+    details          Detail[]
+    itinerary        Itinerary[]
+    hotelsIcon       Boolean     @default(false)
+    mealPlanIcon     Boolean     @default(false)
+    transfersIcon    Boolean     @default(false)
+    flightIcon       Boolean     @default(false)
+    createdAt        DateTime    @default(now())
+    updatedAt        DateTime    @updatedAt
+}
+
+model Detail {
+    id             String   @id @default(uuid())
+    package        Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+    packageId      String
+    sectionName    String
+    sectionDetails String[]
+    displayList    Boolean
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+}
+
+model Itinerary {
+    id        String   @id @default(uuid())
+    package   Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+    packageId String
+    day       Int
+    title     String
+    details   String[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model HomePage {
+    id           String   @id @default(uuid())
+    video        String
+    titleDetails String
+    youtubeURL   String
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
+
+model HotelDestination {
+    id               String   @id @default(uuid())
+    name             String   @unique
+    description      String[]
+    image            String
+    imageDescription String
+    sectionName      String
+    sectionDetails   String[]
+    createdAt        DateTime @default(now())
+    updatedAt        DateTime @updatedAt
+    hotels           Hotel[]
+}
+
+model Hotel {
+    id                 String           @id @default(uuid())
+    name               String           @unique
+    images             Image[]
+    price              Int
+    perCouple          Boolean          @default(false)
+    sectionName        String
+    address            String
+    sectionDetails     String[]
+    createdAt          DateTime         @default(now())
+    updatedAt          DateTime         @updatedAt
+    hotelDestination   HotelDestination @relation(fields: [hotelDestinationId], references: [id], onDelete: Cascade)
+    hotelDestinationId String
+}
+
+model Review {
+    id               String   @id @default(uuid())
+    image            String
+    imageDescription String
+    personName       String   @unique
+    review           String
+    createdAt        DateTime @default(now())
+    updatedAt        DateTime @updatedAt
+}
+
+model Image {
+    id          String   @id @default(uuid())
+    hotel       Hotel?   @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+    hotelId     String?
+    url         String
+    description String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model Offer {
+    id               String   @id @default(uuid())
+    name             String   @unique
+    description      String[]
+    image            String
+    imageDescription String
+    price            Int
+    specialPrice     Int
+    perCouple        Boolean  @default(false)
+    sectionName      String
+    sectionDetails   String[]
+    createdAt        DateTime @default(now())
+    updatedAt        DateTime @updatedAt
+}
+
+model Faq {
+    id        String   @id @default(uuid())
+    question  String
+    answer    String[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

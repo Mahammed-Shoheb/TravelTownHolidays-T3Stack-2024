@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .align-section-center {
+    @apply mx-auto w-[95vw] px-2 md:max-w-7xl md:px-4 lg:px-8;
+  }
+  .navLink {
+    @apply flex items-center gap-1 text-sm  duration-300 hover:text-blue-600;
+  }
+  .sidebarLink {
+    @apply flex items-center gap-2 border-b border-b-slate-950 py-1 text-sm transition-all duration-150 hover:border-b-blue-600 hover:ps-2 hover:text-blue-600;
+  }
+
+  .section-bg-white {
+    @apply rounded-md bg-white shadow-md hover:shadow-xl;
+  }
+}
+
+.slick-track {
+  display: flex !important;
+  height: inherit !important;
+  gap: 1rem;
+}
+
+.center .slick-track {
+  gap: 1rem;
+}
+
+.custom-paging .slick-track {
+  gap: 0;
+}
+.slick-slide {
+  height: inherit !important;
+}
+
+.slick-slide > div {
+  height: 100%;
+  width: 100%;
+}
+
+.slick-dots {
+  top: 100% !important;
+  margin-top: 0.25rem;
+}
