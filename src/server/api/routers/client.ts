@@ -31,6 +31,9 @@ export const clientRouter = createTRPCRouter({
           imageDescription: true,
           name: true,
         },
+        orderBy: {
+          name: "asc",
+        },
       });
       const international = await ctx.db.destination.findMany({
         where: {

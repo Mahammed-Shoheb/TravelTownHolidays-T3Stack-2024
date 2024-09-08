@@ -42,6 +42,8 @@ export default async function page({ params: { slug } }: Props) {
   const packageDetails = await api.client.getPackageDetails({
     packageDestination: formatLinks(slug, false),
   });
+  console.log(packageDetails);
+
   if (!packageDetails) return null;
   const {
     image,
