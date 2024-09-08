@@ -53,14 +53,16 @@ export const clientRouter = createTRPCRouter({
         take: 15,
       });
       const internationalDestinations = international.map((destination) => {
+        const initialPrice = destination.packages[0]?.price ?? 0;
+
         return {
           image: destination.image,
           id: destination.id,
           imageDescription: destination.imageDescription,
           name: destination.name,
           startingFrom: destination.packages.reduce((acc, curr) => {
-            return curr.price >= acc ? curr.price : acc;
-          }, 0),
+            return curr.price <= acc ? curr.price : acc;
+          }, initialPrice),
         };
       });
       const domestic = await ctx.db.destination.findMany({
@@ -81,14 +83,15 @@ export const clientRouter = createTRPCRouter({
         take: 15,
       });
       const domesticDestinations = domestic.map((destination) => {
+        const initialPrice = destination.packages[0]?.price ?? 0;
         return {
           image: destination.image,
           id: destination.id,
           imageDescription: destination.imageDescription,
           name: destination.name,
           startingFrom: destination.packages.reduce((acc, curr) => {
-            return curr.price >= acc ? curr.price : acc;
-          }, 0),
+            return curr.price <= acc ? curr.price : acc;
+          }, initialPrice),
         };
       });
 
