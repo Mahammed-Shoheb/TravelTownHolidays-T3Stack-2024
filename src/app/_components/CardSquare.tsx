@@ -34,14 +34,14 @@ export default async function CardSquare({
           // blurDataURL={await dynamicBlurDataUrl(img)}
         />
         <div className="absolute bottom-2 left-0 right-0 mx-auto h-auto w-[90%] rounded-full  bg-black/50 pe-2 ps-4 text-white backdrop-blur-sm backdrop-filter">
-          <h3 className="text- xl flex items-center justify-center gap-1 font-bold capitalize tracking-wide">
+          <h3 className="flex items-center justify-center gap-1 text-xl font-bold capitalize tracking-wide">
             <span>
               <LocationIcon className="w-5" />
             </span>
             <span>{name}</span>
           </h3>
         </div>
-        <p className="absolute left-2 top-2 rounded-full bg-black/50 px-2  text-sm capitalize text-white backdrop-blur-sm backdrop-filter">
+        <p className="absolute left-2 top-2 rounded-full bg-black/50 px-2   capitalize text-white backdrop-blur-sm backdrop-filter">
           from {formatCurrency.format(startingFrom)}/PP
         </p>
         <OpenNewTab className="absolute right-2 top-2 w-6 rounded-md  bg-black/50 fill-white text-white backdrop-blur-sm backdrop-filter" />
