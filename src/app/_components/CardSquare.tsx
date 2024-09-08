@@ -28,6 +28,7 @@ export default async function CardSquare({
           width={270}
           height={400}
           loading="lazy"
+          // quality={100}
           className="block h-full w-full rounded-xl object-cover object-center"
           // placeholder="blur"
           // blurDataURL={await dynamicBlurDataUrl(img)}

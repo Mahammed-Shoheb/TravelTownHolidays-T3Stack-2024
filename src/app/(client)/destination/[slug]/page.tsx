@@ -51,7 +51,7 @@ export default async function page({ params: { slug } }: Props) {
             {description.map((paragraph, index) => {
               return (
                 <p
-                  className="mx-auto mb-2 max-w-[50rem] text-center leading-5 tracking-wide"
+                  className="mx-auto mb-2 max-w-[95%] leading-5 tracking-wide"
                   key={index}
                 >
                   {paragraph}

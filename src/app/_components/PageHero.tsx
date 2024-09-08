@@ -20,7 +20,7 @@ export default async function PageHero({
         <Image
           src={src}
           alt={alt}
-          className="h-[30vh] w-full rounded-lg object-cover sm:h-[80vh] md:h-[40vh] lg:h-[60vh]"
+          className="h-[30vh] w-full rounded-lg object-cover object-center sm:h-[80vh] md:h-[50vh] lg:h-[80vh]"
           width={width ?? 1200}
           height={height ?? 800}
           placeholder="blur"

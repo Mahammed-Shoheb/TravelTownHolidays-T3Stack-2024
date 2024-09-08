@@ -54,6 +54,7 @@ export default async function page({ params: { slug } }: Props) {
     itinerary,
     places,
     price,
+    perCouple,
   } = packageDetails;
   return (
     <main className="relative">
@@ -73,11 +74,17 @@ export default async function page({ params: { slug } }: Props) {
             <span>{places}</span>
           </p>
           <div>
-            <p className="flex items-center gap-4">
+            <p className="flex items-center gap-1">
               <span>
                 <PriceTag className="w-6" />
               </span>
               <span>{formatCurrency.format(price)}</span>
+              <span> /- </span>
+              {perCouple ? (
+                <span className="text-sm text-slate-900">per couple</span>
+              ) : (
+                <span className="text-sm text-slate-900">per person</span>
+              )}
             </p>
             <p className="flex items-center gap-4">
               <span>
