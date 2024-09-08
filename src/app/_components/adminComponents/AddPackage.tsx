@@ -456,7 +456,7 @@ export default function AddPackage() {
                 }}
               />
               <label htmlFor="packageIsPerCouple">
-                Select if this is domestic
+                Is this price for per couple ?
               </label>
             </div>
             <FormInput
