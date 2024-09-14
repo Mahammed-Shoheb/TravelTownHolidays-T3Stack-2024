@@ -727,7 +727,9 @@ export const adminRouter = createTRPCRouter({
         const categories = await ctx.db.category.findMany({
           where: {
             name: {
-              in: input.PackageCategories,
+              in: input.PackageCategories.map((category) =>
+                category.trim().toLowerCase(),
+              ),
             },
           },
           select: {
@@ -742,9 +744,10 @@ export const adminRouter = createTRPCRouter({
             id: true,
           },
         });
-        if (!categories || !packageDestination) {
-          throw new Error(" Destination or category not found");
-        }
+        if (!packageDestination) throw new Error("Destination not found");
+
+        if (!categories) throw new Error("Category not found");
+
         await ctx.db.package.create({
           data: {
             name: input.packageName.trim().toLowerCase(),
@@ -820,7 +823,9 @@ export const adminRouter = createTRPCRouter({
         const categories = await ctx.db.category.findMany({
           where: {
             name: {
-              in: input.PackageCategories,
+              in: input.PackageCategories.map((category) =>
+                category.trim().toLowerCase(),
+              ),
             },
           },
           select: {

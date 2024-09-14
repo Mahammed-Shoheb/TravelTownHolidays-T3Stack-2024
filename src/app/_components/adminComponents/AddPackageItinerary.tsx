@@ -4,6 +4,7 @@ import { useState } from "react";
 import FormInput from "../FormInput";
 import ParagraphsArray from "./ParagraphsArray";
 import Button from "../Button";
+import toast from "react-hot-toast";
 
 type Itinerary = {
   day: number;
@@ -36,6 +37,10 @@ export default function AddPackageItinerary({
   };
 
   const handleAdd = () => {
+    if (newItinerary.day == 0) {
+      toast.error("kindly change the day from 0");
+      return;
+    }
     if (newItinerary.title.trim() !== "") {
       if (isEditing) {
         handleEdit({
@@ -89,6 +94,7 @@ export default function AddPackageItinerary({
           id="day"
           label="day"
           type="number"
+          disabled={isEditing}
           value={newItinerary.day}
           onChange={handleChange}
         />
@@ -130,7 +136,7 @@ export default function AddPackageItinerary({
               <div className="flex justify-between">
                 <p className="break-all">Day : {details.day}</p>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-4">
                   <button
                     type="button"
                     onClick={() => handleRemove(i)}

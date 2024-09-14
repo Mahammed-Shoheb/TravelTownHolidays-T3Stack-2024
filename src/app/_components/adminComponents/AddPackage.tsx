@@ -289,10 +289,19 @@ export default function AddPackage() {
     }));
   };
   const handleItineraryAddition = (itinerary: Itinerary) => {
+    const isDuplicate = content.packageItinerary.find(
+      (temp) => temp.day == itinerary.day,
+    );
+    if (isDuplicate) {
+      toast.error(`Day ${itinerary.day} already exist`);
+      return;
+    }
     if (itinerary) {
       setContent((prevContent) => ({
         ...prevContent,
-        packageItinerary: [...prevContent.packageItinerary, itinerary],
+        packageItinerary: [...prevContent.packageItinerary, itinerary].sort(
+          (a, b) => a.day - b.day,
+        ),
       }));
     }
   };

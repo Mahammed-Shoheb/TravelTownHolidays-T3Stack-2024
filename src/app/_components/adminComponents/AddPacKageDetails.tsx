@@ -145,7 +145,7 @@ export default function AddPackageDetails({
             >
               <div className="flex justify-between">
                 <p className="break-all">{details.sectionName}</p>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-4">
                   <button
                     type="button"
                     onClick={() => handleRemove(i)}
