@@ -59,7 +59,7 @@ export default function Packages({ packages }: { packages: Packages[] }) {
                   alt={imageDescription}
                   width={400}
                   height={300}
-                  className="block h-full w-full object-cover"
+                  className="block h-full w-full object-fill"
                   placeholder="blur"
                   blurDataURL={await dynamicBlurDataUrl(image)}
                 />

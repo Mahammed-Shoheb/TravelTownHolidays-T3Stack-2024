@@ -35,7 +35,7 @@ export default function DestinationsList({
                   placeholder="blur"
                   loading="lazy"
                   blurDataURL={await dynamicBlurDataUrl(image)}
-                  className="block h-full w-full object-cover object-center transition-all duration-300 group-hover:scale-125"
+                  className="block h-full w-full object-fill object-center transition-all duration-300 group-hover:scale-125"
                 />
                 <div className="absolute bottom-0 w-full bg-black/40 px-2 py-1 text-center font-semibold capitalize backdrop-blur-sm backdrop-filter">
                   <h2 className="text-white">{name}</h2>

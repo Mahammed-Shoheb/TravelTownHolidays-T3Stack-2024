@@ -30,7 +30,7 @@ export default function CustomPaging({
             alt={images[i]!.description}
             width={100}
             height={100}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-fill"
           />
         </a>
       );

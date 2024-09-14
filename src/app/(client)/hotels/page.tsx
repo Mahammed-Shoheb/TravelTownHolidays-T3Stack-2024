@@ -74,7 +74,7 @@ export default async function page() {
                         height={300}
                         placeholder="blur"
                         blurDataURL={await dynamicBlurDataUrl(image)}
-                        className="block h-full w-full object-cover"
+                        className="block h-full w-full object-fill"
                       />
                     </div>
                     <div>
