@@ -270,22 +270,30 @@ export default function Categories() {
                 key={category.id}
                 className="align-section-center section-bg-white my-4 flex items-center justify-between py-4 "
               >
-                <p className="capitalize">{category.name}</p>
-                <div className="flex items-center gap-2">
+                <p className="font-semibold capitalize">{category.name}</p>
+                <div className="flex items-center gap-6">
                   <button
+                    type="button"
                     onClick={() => handleDelete(category.id)}
-                    className="grid  place-items-center"
+                    className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
                   >
-                    <FaTrashCan className="text-red-500 duration-150 hover:text-red-700" />
+                    <span>delete</span>
+                    <span>
+                      <FaTrashCan />
+                    </span>
                   </button>
                   <button
+                    type="button"
                     onClick={() => {
                       scrollTo("#categories", 150);
                       handleEdit(category.id);
                     }}
-                    className="grid  place-items-center"
+                    className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
                   >
-                    <FaRegEdit className="text-green-500 duration-150 hover:text-green-700" />
+                    <span>edit</span>
+                    <span>
+                      <FaRegEdit />
+                    </span>
                   </button>
                 </div>
               </li>

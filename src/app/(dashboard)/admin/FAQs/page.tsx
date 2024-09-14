@@ -220,22 +220,32 @@ export default function FAQs() {
                   className="align-section-center section-bg-white my-2 flex flex-col px-2  py-2"
                 >
                   <div className="flex items-center justify-between gap-1">
-                    <p className="break-all text-xl">{content.question}</p>
-                    <div className="flex items-center gap-2">
+                    <p className="break-all font-semibold">
+                      {content.question}
+                    </p>
+                    <div className="flex items-center gap-6">
                       <button
+                        type="button"
                         onClick={() => handleDelete(content.id)}
-                        className="grid  place-items-center"
+                        className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
                       >
-                        <FaTrashCan className="text-red-500 duration-150 hover:text-red-700" />
+                        <span>delete</span>
+                        <span>
+                          <FaTrashCan />
+                        </span>
                       </button>
                       <button
+                        type="button"
                         onClick={() => {
                           scrollTo("#faqs", 150);
                           handleEdit(content.id);
                         }}
-                        className="grid place-items-center"
+                        className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
                       >
-                        <FaRegEdit className="text-green-500 duration-150 hover:text-green-700" />
+                        <span>edit</span>
+                        <span>
+                          <FaRegEdit />
+                        </span>
                       </button>
                     </div>
                   </div>
