@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import scrollTo from "~/utils/scrollTo";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
 
 export default function AddHotelDestination() {
   const [content, setContent] = useState<HotelDestinationType>({
@@ -20,7 +20,7 @@ export default function AddHotelDestination() {
     hotelDestinationSectionDetails: [],
   });
   const [isEditing, setIsEditing] = useState(false);
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const {
     data,
     refetch,
@@ -82,7 +82,7 @@ export default function AddHotelDestination() {
           hotelDestinationSectionName: "",
           hotelDestinationSectionDetails: [],
         });
-        await queryClient.invalidateQueries({ queryKey: ["getHotels"] });
+        // await queryClient.invalidateQueries({ queryKey: ["getHotels"] });
         void refetch();
         toast.success(data.message);
       },
@@ -141,7 +141,7 @@ export default function AddHotelDestination() {
           hotelDestinationSectionName: "",
           hotelDestinationSectionDetails: [],
         });
-        await queryClient.invalidateQueries({ queryKey: ["getHotels"] });
+        // await queryClient.invalidateQueries({ queryKey: ["getHotels"] });
         void refetch();
         setIsEditing(false);
         toast.success(data.message);
@@ -154,7 +154,7 @@ export default function AddHotelDestination() {
       },
       onSuccess: async (data) => {
         toast.success(data.message);
-        await queryClient.invalidateQueries({ queryKey: ["getHotels"] });
+        // await queryClient.invalidateQueries({ queryKey: ["getHotels"] });
         void refetch();
       },
     });

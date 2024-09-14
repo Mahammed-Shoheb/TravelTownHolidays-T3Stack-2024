@@ -294,6 +294,22 @@ export const adminRouter = createTRPCRouter({
           imageDescription: true,
           sectionName: true,
           sectionDetails: true,
+          hotels: {
+            select: {
+              id: true,
+              name: true,
+              price: true,
+              perCouple: true,
+              images: true,
+              address: true,
+              hotelDestination: true,
+              sectionName: true,
+              sectionDetails: true,
+            },
+            orderBy: {
+              name: "asc",
+            },
+          },
         },
       });
       return { hotelDestinations };
@@ -396,26 +412,26 @@ export const adminRouter = createTRPCRouter({
   // HOTEL
   // ******************************************
 
-  getHotels: privateProcedure.query(async ({ ctx }) => {
-    try {
-      const hotels = await ctx.db.hotel.findMany({
-        select: {
-          id: true,
-          name: true,
-          price: true,
-          perCouple: true,
-          images: true,
-          address: true,
-          hotelDestination: true,
-          sectionName: true,
-          sectionDetails: true,
-        },
-      });
-      return { hotels };
-    } catch (error) {
-      throw error;
-    }
-  }),
+  // getHotels: privateProcedure.query(async ({ ctx }) => {
+  //   try {
+  //     const hotels = await ctx.db.hotel.findMany({
+  //       select: {
+  //         id: true,
+  //         name: true,
+  //         price: true,
+  //         perCouple: true,
+  //         images: true,
+  //         address: true,
+  //         hotelDestination: true,
+  //         sectionName: true,
+  //         sectionDetails: true,
+  //       },
+  //     });
+  //     return { hotels };
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }),
   addHotel: privateProcedure
     .input(hotelSchema)
     .mutation(async ({ ctx, input }) => {
@@ -584,6 +600,32 @@ export const adminRouter = createTRPCRouter({
           imageDescription: true,
           name: true,
           featured: true,
+          packages: {
+            select: {
+              id: true,
+              days: true,
+              destination: true,
+              places: true,
+              details: true,
+              categories: true,
+              price: true,
+              perCouple: true,
+              itinerary: true,
+              image: true,
+              imageDescription: true,
+              name: true,
+              flightIcon: true,
+              hotelsIcon: true,
+              mealPlanIcon: true,
+              transfersIcon: true,
+            },
+            orderBy: {
+              name: "asc",
+            },
+          },
+        },
+        orderBy: {
+          name: "asc",
         },
       });
       return { destinations };
@@ -681,33 +723,33 @@ export const adminRouter = createTRPCRouter({
   // PACKAGES
   // ******************************************
 
-  getPackages: privateProcedure.query(async ({ ctx }) => {
-    try {
-      const packages = await ctx.db.package.findMany({
-        select: {
-          id: true,
-          days: true,
-          destination: true,
-          places: true,
-          details: true,
-          categories: true,
-          price: true,
-          perCouple: true,
-          itinerary: true,
-          image: true,
-          imageDescription: true,
-          name: true,
-          flightIcon: true,
-          hotelsIcon: true,
-          mealPlanIcon: true,
-          transfersIcon: true,
-        },
-      });
-      return { packages };
-    } catch (error) {
-      throw error;
-    }
-  }),
+  // getPackages: privateProcedure.query(async ({ ctx }) => {
+  //   try {
+  //     const packages = await ctx.db.package.findMany({
+  //       select: {
+  //         id: true,
+  //         days: true,
+  //         destination: true,
+  //         places: true,
+  //         details: true,
+  //         categories: true,
+  //         price: true,
+  //         perCouple: true,
+  //         itinerary: true,
+  //         image: true,
+  //         imageDescription: true,
+  //         name: true,
+  //         flightIcon: true,
+  //         hotelsIcon: true,
+  //         mealPlanIcon: true,
+  //         transfersIcon: true,
+  //       },
+  //     });
+  //     return { packages };
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }),
   addPackage: privateProcedure
     .input(packageSchema)
     .mutation(async ({ ctx, input }) => {

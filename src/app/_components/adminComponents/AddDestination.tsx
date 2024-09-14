@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import scrollTo from "~/utils/scrollTo";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
 
 export default function AddDestination() {
   const [content, setContent] = useState<DestinationType>({
@@ -26,7 +26,7 @@ export default function AddDestination() {
     isLoading,
     isPending: initPending,
   } = api.admin.getDestinations.useQuery();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   const { mutate: addDestination, isPending: addPending } =
     api.admin.addDestination.useMutation({
@@ -74,7 +74,7 @@ export default function AddDestination() {
           destinationDomestic: true,
           destinationFeatured: false,
         });
-        await queryClient.invalidateQueries({ queryKey: ["getPackages"] });
+        // await queryClient.invalidateQueries({ queryKey: ["getPackages"] });
         void refetch();
         toast.success(data.message);
       },
@@ -126,7 +126,7 @@ export default function AddDestination() {
           destinationDomestic: true,
           destinationFeatured: false,
         });
-        await queryClient.invalidateQueries({ queryKey: ["getPackages"] });
+        // await queryClient.invalidateQueries({ queryKey: ["getPackages"] });
         void refetch();
         toast.success(data.message);
       },
@@ -138,7 +138,7 @@ export default function AddDestination() {
         toast.error(error.message);
       },
       onSuccess: async (data) => {
-        await queryClient.invalidateQueries({ queryKey: ["getPackages"] });
+        // await queryClient.invalidateQueries({ queryKey: ["getPackages"] });
         toast.success(data.message);
         void refetch();
       },

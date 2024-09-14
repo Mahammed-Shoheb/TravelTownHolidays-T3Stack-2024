@@ -33,7 +33,7 @@ export default function AddHotel() {
     refetch,
     isLoading,
     isPending: initPending,
-  } = api.admin.getHotels.useQuery();
+  } = api.admin.getHotelDestination.useQuery();
 
   const { mutate: addHotel, isPending: addPending } =
     api.admin.addHotel.useMutation({
@@ -238,8 +238,18 @@ export default function AddHotel() {
     setIsEditing(false);
   };
 
-  const handleEdit = (id: string) => {
-    const hotel = data?.hotels.find((hotel) => hotel.id === id);
+  const handleEdit = (hotelDestinationID: string, hotelId: string) => {
+    const hotelDestination = data?.hotelDestinations.find(
+      (hotelDestination) => {
+        if (hotelDestination.id === hotelDestinationID)
+          return hotelDestination.hotels;
+      },
+    );
+    if (!hotelDestination) return;
+
+    const hotel = hotelDestination?.hotels.find(
+      (packageDetail) => packageDetail.id === hotelId,
+    );
     if (hotel) {
       setContent({
         id: hotel.id,
@@ -351,9 +361,10 @@ export default function AddHotel() {
         </form>
       </div>
       <div>
-        {data?.hotels?.length == 0 && (
+        {data?.hotelDestinations?.length == 0 && (
           <h2 className="align-section-center section-bg-white mb-8 p-4 text-xl capitalize">
-            no hotel has been added yet, Kindly add hotels.
+            no hotel destination has been added yet, Kindly add hotel
+            destination and hotels
           </h2>
         )}
         <ul>
@@ -372,38 +383,49 @@ export default function AddHotel() {
                 </li>
               );
             })}
-          {data?.hotels.map((hotel) => {
+          {data?.hotelDestinations.map((hotelDestination) => {
             return (
-              <li
-                key={hotel.id}
-                className="align-section-center section-bg-white my-4 flex items-center justify-between py-4"
-              >
-                <p className="font-semibold capitalize">{hotel.name}</p>
-                <div className="flex items-center gap-6">
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(hotel.id)}
-                    className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
-                  >
-                    <span>delete</span>
-                    <span>
-                      <FaTrashCan />
-                    </span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      scrollTo("#hotelForm", 150);
-                      handleEdit(hotel.id);
-                    }}
-                    className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
-                  >
-                    <span>edit</span>
-                    <span>
-                      <FaRegEdit />
-                    </span>
-                  </button>
-                </div>
+              <li className="align-section-center section-bg-white my-4 py-4">
+                <h2 className="mb-4 text-xl font-bold uppercase">
+                  {hotelDestination.name}
+                </h2>
+                <ul>
+                  {hotelDestination.hotels.map((hotel) => {
+                    return (
+                      <li
+                        key={hotel.id}
+                        className="flex items-center justify-between py-2"
+                      >
+                        <p className="font-semibold capitalize">{hotel.name}</p>
+                        <div className="flex items-center gap-6">
+                          <button
+                            type="button"
+                            onClick={() => handleDelete(hotel.id)}
+                            className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
+                          >
+                            <span>delete</span>
+                            <span>
+                              <FaTrashCan />
+                            </span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              scrollTo("#hotelForm", 150);
+                              handleEdit(hotelDestination.id, hotel.id);
+                            }}
+                            className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
+                          >
+                            <span>edit</span>
+                            <span>
+                              <FaRegEdit />
+                            </span>
+                          </button>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
               </li>
             );
           })}

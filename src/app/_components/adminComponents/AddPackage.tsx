@@ -47,7 +47,7 @@ export default function AddPackage() {
     refetch,
     isLoading,
     isPending: initPending,
-  } = api.admin.getPackages.useQuery();
+  } = api.admin.getDestinations.useQuery();
 
   const { mutate: addPackage, isPending: addPending } =
     api.admin.addPackage.useMutation({
@@ -138,6 +138,7 @@ export default function AddPackage() {
         toast.success(data.message);
       },
     });
+
   const { mutate: updatePackage, isPending: updatePending } =
     api.admin.updatePackage.useMutation({
       onError(error) {
@@ -227,6 +228,7 @@ export default function AddPackage() {
         toast.success(data.message);
       },
     });
+
   const { mutate: deletePackage } = api.admin.deletePackage.useMutation({
     onError: (error) => {
       toast.error(error.message);
@@ -400,10 +402,16 @@ export default function AddPackage() {
     deletePackage({ id });
   };
 
-  const handleEdit = (id: string) => {
-    const packageDetail = data?.packages.find(
-      (packageDetail) => packageDetail.id === id,
+  const handleEdit = (destinationId: string, packageId: string) => {
+    const destination = data?.destinations.find((destination) => {
+      if (destination.id === destinationId) return destination.packages;
+    });
+    if (!destination) return;
+
+    const packageDetail = destination?.packages.find(
+      (packageDetail) => packageDetail.id === packageId,
     );
+
     if (packageDetail) {
       setContent({
         id: packageDetail.id,
@@ -608,9 +616,10 @@ export default function AddPackage() {
           </form>
         </div>
         <div>
-          {data?.packages?.length == 0 && (
+          {data?.destinations?.length == 0 && (
             <h2 className="align-section-center section-bg-white mb-8 p-4 text-xl capitalize">
-              no package has been added yet, Kindly add packages.
+              no destination has been added yet, Kindly add destination and add
+              package.
             </h2>
           )}
           <ul>
@@ -629,40 +638,51 @@ export default function AddPackage() {
                   </li>
                 );
               })}
-            {data?.packages.map((packageDetail) => {
+            {data?.destinations.map((destination) => {
               return (
-                <li
-                  key={packageDetail.id}
-                  className="align-section-center section-bg-white my-4 flex items-center justify-between py-4"
-                >
-                  <p className="font-semibold capitalize">
-                    {packageDetail.name}
-                  </p>
-                  <div className="flex items-center gap-6">
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(packageDetail.id)}
-                      className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
-                    >
-                      <span>delete</span>
-                      <span>
-                        <FaTrashCan />
-                      </span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        scrollTo("#package", 150);
-                        handleEdit(packageDetail.id);
-                      }}
-                      className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
-                    >
-                      <span>edit</span>
-                      <span>
-                        <FaRegEdit />
-                      </span>
-                    </button>
-                  </div>
+                <li className="align-section-center section-bg-white my-4 py-4">
+                  <h2 className="mb-4 text-xl font-bold uppercase">
+                    {destination.name}
+                  </h2>
+                  <ul>
+                    {destination?.packages.map((packageDetail) => {
+                      return (
+                        <li
+                          key={packageDetail.id}
+                          className="flex items-center justify-between py-2"
+                        >
+                          <p className="font-semibold capitalize">
+                            {packageDetail.name}
+                          </p>
+                          <div className="flex items-center gap-6">
+                            <button
+                              type="button"
+                              onClick={() => handleDelete(packageDetail.id)}
+                              className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
+                            >
+                              <span>delete</span>
+                              <span>
+                                <FaTrashCan />
+                              </span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                scrollTo("#package", 150);
+                                handleEdit(destination.id, packageDetail.id);
+                              }}
+                              className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
+                            >
+                              <span>edit</span>
+                              <span>
+                                <FaRegEdit />
+                              </span>
+                            </button>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </li>
               );
             })}
