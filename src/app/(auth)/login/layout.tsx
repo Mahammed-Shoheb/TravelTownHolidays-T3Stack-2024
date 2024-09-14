@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="dark overflow-x-hidden bg-blue-100">
+      <body className="dark overflow-x-hidden bg-slate-700">
         <header className="bg-slate-900 px-8 py-2">
           <Logo />
         </header>
