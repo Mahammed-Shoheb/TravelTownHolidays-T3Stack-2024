@@ -29,9 +29,9 @@ export default function CarouselSlider({
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 800,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
         },
       },
       {

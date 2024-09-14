@@ -3,6 +3,7 @@ import Link from "next/link";
 import formatCurrency from "~/utils/formatCurrency";
 import formatLinks from "~/utils/formatLinks";
 import { LocationIcon, OpenNewTab } from "~/assets/svg";
+import { dynamicBlurDataUrl } from "~/utils/dynamicBlurDataUrl";
 // import { dynamicBlurDataUrl } from "~/utils/dynamicBlurDataUrl";
 
 export default async function CardSquare({
@@ -20,7 +21,7 @@ export default async function CardSquare({
     <article>
       <Link
         href={`/destination/${formatLinks(name.toLowerCase())}`}
-        className="relative block h-96 rounded-2xl shadow-lg"
+        className="relative block h-60 rounded-2xl shadow-lg"
       >
         <Image
           src={img}
@@ -28,10 +29,9 @@ export default async function CardSquare({
           width={270}
           height={400}
           loading="lazy"
-          // quality={100}
-          className="block h-full w-full rounded-xl object-cover object-center"
-          // placeholder="blur"
-          // blurDataURL={await dynamicBlurDataUrl(img)}
+          className="block h-60 w-full rounded-xl object-fill object-center"
+          placeholder="blur"
+          blurDataURL={await dynamicBlurDataUrl(img)}
         />
         <div className="absolute bottom-2 left-0 right-0 mx-auto h-auto w-[90%] rounded-full  bg-black/50 pe-2 ps-4 text-white backdrop-blur-sm backdrop-filter">
           <h3 className="flex items-center justify-center gap-1 text-xl font-bold capitalize tracking-wide">
