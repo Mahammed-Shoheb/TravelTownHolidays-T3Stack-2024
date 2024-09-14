@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import scrollTo from "~/utils/scrollTo";
+import ConfirmationModel from "./ConfirmationModel";
 // import { useQueryClient } from "@tanstack/react-query";
 
 export default function AddDestination() {
@@ -20,6 +21,9 @@ export default function AddDestination() {
     destinationFeatured: false,
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
+  const [isDeleteModelOpen, setIsDeleteModelOpen] = useState(false);
+
   const {
     data,
     refetch,
@@ -195,8 +199,19 @@ export default function AddDestination() {
       });
     }
   };
+
   const handleDelete = (id: string) => {
-    deleteDestination({ id });
+    setIsDeleteModelOpen(true);
+    setDeleteId(id);
+  };
+
+  const confirmDelete = () => {
+    setIsDeleteModelOpen(false);
+    deleteDestination({ id: deleteId });
+  };
+
+  const closeModel = () => {
+    setIsDeleteModelOpen(false);
   };
 
   const handleEdit = (id: string) => {
@@ -218,7 +233,7 @@ export default function AddDestination() {
   };
 
   return (
-    <main>
+    <>
       <section>
         <div className="align-section-center section-bg-white mb-4 py-4">
           <SectionTitle title="add holiday destination" adminSubTitle={true} />
@@ -366,6 +381,13 @@ export default function AddDestination() {
           </ul>
         </div>
       </section>
-    </main>
+      {isDeleteModelOpen && (
+        <ConfirmationModel
+          name="packages"
+          confirmDelete={confirmDelete}
+          closeModel={closeModel}
+        />
+      )}
+    </>
   );
 }

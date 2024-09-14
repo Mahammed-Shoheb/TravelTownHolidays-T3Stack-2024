@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import scrollTo from "~/utils/scrollTo";
+import ConfirmationModel from "./ConfirmationModel";
 // import { useQueryClient } from "@tanstack/react-query";
 
 export default function AddHotelDestination() {
@@ -20,6 +21,9 @@ export default function AddHotelDestination() {
     hotelDestinationSectionDetails: [],
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
+  const [isDeleteModelOpen, setIsDeleteModelOpen] = useState(false);
+
   // const queryClient = useQueryClient();
   const {
     data,
@@ -211,7 +215,17 @@ export default function AddHotelDestination() {
   };
 
   const handleDelete = (id: string) => {
-    deleteHotelDestination({ id });
+    setIsDeleteModelOpen(true);
+    setDeleteId(id);
+  };
+
+  const confirmDelete = () => {
+    setIsDeleteModelOpen(false);
+    deleteHotelDestination({ id: deleteId });
+  };
+
+  const closeModel = () => {
+    setIsDeleteModelOpen(false);
   };
 
   const handleCancel = () => {
@@ -245,132 +259,141 @@ export default function AddHotelDestination() {
   };
 
   return (
-    <section>
-      <div className="align-section-center section-bg-white mb-4 py-4">
-        <SectionTitle title="add hotel destination" adminSubTitle={true} />
-        <form onSubmit={handleSubmit} id="hotelDestination">
-          <FormInput
-            name="hotelDestinationName"
-            type="text"
-            label="name"
-            value={content.hotelDestinationName}
-            onChange={handleChange}
-            required
-          />
-          <FormInput
-            name="hotelDestinationImageURL"
-            label="cloudinary image URL"
-            type="text"
-            value={content.hotelDestinationImageURL}
-            onChange={handleChange}
-            required
-          />
-          <FormInput
-            name="hotelDestinationImageDescription"
-            label="image description"
-            type="text"
-            value={content.hotelDestinationImageDescription}
-            onChange={handleChange}
-            required
-          />
-          <ParagraphsArray
-            handleAddition={handleDescriptionAddition}
-            paragraphs={content.hotelDestinationDescription}
-            title="add few paragraphs about the hotel destination city"
-          />
-          <FormInput
-            name="hotelDestinationSectionName"
-            label="section name"
-            type="text"
-            value={content.hotelDestinationSectionName}
-            onChange={handleChange}
-            required
-          />
-
-          <ParagraphsArray
-            handleAddition={handleSectionDetails}
-            paragraphs={content.hotelDestinationSectionDetails}
-            title="section details"
-          />
-
-          <div className="my-2 flex justify-end gap-2">
-            <Button
-              text={`${isEditing ? "save" : "add"}`}
-              type="submit"
-              disabled={initPending || updatePending || addPending}
+    <>
+      <section>
+        <div className="align-section-center section-bg-white mb-4 py-4">
+          <SectionTitle title="add hotel destination" adminSubTitle={true} />
+          <form onSubmit={handleSubmit} id="hotelDestination">
+            <FormInput
+              name="hotelDestinationName"
+              type="text"
+              label="name"
+              value={content.hotelDestinationName}
+              onChange={handleChange}
+              required
             />
-            <Button
-              text={"cancel"}
-              type="reset"
-              styles={`${isEditing ? "block" : "hidden"}`}
-              disabled={initPending || updatePending || addPending}
-              onClick={handleCancel}
+            <FormInput
+              name="hotelDestinationImageURL"
+              label="cloudinary image URL"
+              type="text"
+              value={content.hotelDestinationImageURL}
+              onChange={handleChange}
+              required
             />
-          </div>
-        </form>
-      </div>
-      <div>
-        {data?.hotelDestinations?.length == 0 && (
-          <h2 className="align-section-center section-bg-white mb-8 p-4 text-xl capitalize">
-            no hotel destination city has been added yet, Kindly add hotel
-            destinations.
-          </h2>
-        )}
-        <ul>
-          {isLoading &&
-            [0, 1, 2, 3].map((i) => {
+            <FormInput
+              name="hotelDestinationImageDescription"
+              label="image description"
+              type="text"
+              value={content.hotelDestinationImageDescription}
+              onChange={handleChange}
+              required
+            />
+            <ParagraphsArray
+              handleAddition={handleDescriptionAddition}
+              paragraphs={content.hotelDestinationDescription}
+              title="add few paragraphs about the hotel destination city"
+            />
+            <FormInput
+              name="hotelDestinationSectionName"
+              label="section name"
+              type="text"
+              value={content.hotelDestinationSectionName}
+              onChange={handleChange}
+              required
+            />
+
+            <ParagraphsArray
+              handleAddition={handleSectionDetails}
+              paragraphs={content.hotelDestinationSectionDetails}
+              title="section details"
+            />
+
+            <div className="my-2 flex justify-end gap-2">
+              <Button
+                text={`${isEditing ? "save" : "add"}`}
+                type="submit"
+                disabled={initPending || updatePending || addPending}
+              />
+              <Button
+                text={"cancel"}
+                type="reset"
+                styles={`${isEditing ? "block" : "hidden"}`}
+                disabled={initPending || updatePending || addPending}
+                onClick={handleCancel}
+              />
+            </div>
+          </form>
+        </div>
+        <div>
+          {data?.hotelDestinations?.length == 0 && (
+            <h2 className="align-section-center section-bg-white mb-8 p-4 text-xl capitalize">
+              no hotel destination city has been added yet, Kindly add hotel
+              destinations.
+            </h2>
+          )}
+          <ul>
+            {isLoading &&
+              [0, 1, 2, 3].map((i) => {
+                return (
+                  <li
+                    className="align-section-center section-bg-white my-2 flex h-8 items-center justify-between"
+                    key={i}
+                  >
+                    <div className="h-4 w-36 animate-pulse rounded-md bg-gray-200"></div>
+                    <div className="flex items-center gap-2">
+                      <span className="h-4 w-4 animate-pulse  bg-gray-200"></span>
+                      <span className="h-4 w-4 animate-pulse  bg-gray-200"></span>
+                    </div>
+                  </li>
+                );
+              })}
+            {data?.hotelDestinations.map((hotelDestination) => {
               return (
                 <li
-                  className="align-section-center section-bg-white my-2 flex h-8 items-center justify-between"
-                  key={i}
+                  key={hotelDestination.id}
+                  className="align-section-center section-bg-white my-4 flex items-center justify-between py-4"
                 >
-                  <div className="h-4 w-36 animate-pulse rounded-md bg-gray-200"></div>
-                  <div className="flex items-center gap-2">
-                    <span className="h-4 w-4 animate-pulse  bg-gray-200"></span>
-                    <span className="h-4 w-4 animate-pulse  bg-gray-200"></span>
+                  <p className="font-semibold capitalize">
+                    {hotelDestination.name}
+                  </p>
+                  <div className="flex items-center gap-6">
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(hotelDestination.id)}
+                      className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
+                    >
+                      <span>delete</span>
+                      <span>
+                        <FaTrashCan />
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        scrollTo("#hotelDestination", 150);
+                        handleEdit(hotelDestination.id);
+                      }}
+                      className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
+                    >
+                      <span>edit</span>
+                      <span>
+                        <FaRegEdit />
+                      </span>
+                    </button>
                   </div>
                 </li>
               );
             })}
-          {data?.hotelDestinations.map((hotelDestination) => {
-            return (
-              <li
-                key={hotelDestination.id}
-                className="align-section-center section-bg-white my-4 flex items-center justify-between py-4"
-              >
-                <p className="font-semibold capitalize">
-                  {hotelDestination.name}
-                </p>
-                <div className="flex items-center gap-6">
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(hotelDestination.id)}
-                    className="flex items-center gap-1 rounded-md border bg-red-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-red-500"
-                  >
-                    <span>delete</span>
-                    <span>
-                      <FaTrashCan />
-                    </span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      scrollTo("#hotelDestination", 150);
-                      handleEdit(hotelDestination.id);
-                    }}
-                    className="flex items-center gap-1 rounded-md border bg-green-600 px-2 py-1 text-sm font-semibold uppercase text-white duration-150 hover:bg-green-500"
-                  >
-                    <span>edit</span>
-                    <span>
-                      <FaRegEdit />
-                    </span>
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </section>
+          </ul>
+        </div>
+      </section>
+      {isDeleteModelOpen && (
+        <ConfirmationModel
+          name="hotels"
+          confirmDelete={confirmDelete}
+          closeModel={closeModel}
+        />
+      )}
+    </>
   );
 }
