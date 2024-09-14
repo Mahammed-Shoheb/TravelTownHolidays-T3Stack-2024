@@ -4,6 +4,7 @@ import { useState } from "react";
 import FormInput from "../FormInput";
 import ParagraphsArray from "./ParagraphsArray";
 import Button from "../Button";
+import SelectInput from "../SelectInput";
 
 type Details = {
   sectionName: string;
@@ -34,6 +35,12 @@ export default function AddPackageDetails({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  const handleSelectInputChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setNewDetails((prevContent) => ({
+      ...prevContent,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleAdd = () => {
@@ -91,13 +98,20 @@ export default function AddPackageDetails({
     <div>
       <h3 className="text-sm font-semibold capitalize">{title}</h3>
       <div className="my-2 flex flex-col items-end gap-2  ">
-        <FormInput
+        <SelectInput
           name="sectionName"
           id="sectionName"
           label="section name"
-          type="text"
+          options={[
+            "overview",
+            "highlights",
+            "inclusions",
+            "exclusions",
+            "tips",
+            "terms",
+          ]}
           value={newDetails.sectionName}
-          onChange={handleChange}
+          onChange={handleSelectInputChange}
         />
         <div className="my-2 flex  w-full items-center gap-2">
           <input

@@ -385,7 +385,10 @@ export default function AddHotel() {
             })}
           {data?.hotelDestinations.map((hotelDestination) => {
             return (
-              <li className="align-section-center section-bg-white my-4 py-4">
+              <li
+                className="align-section-center section-bg-white my-4 py-4"
+                key={hotelDestination.id}
+              >
                 <h2 className="mb-4 text-xl font-bold uppercase">
                   {hotelDestination.name}
                 </h2>

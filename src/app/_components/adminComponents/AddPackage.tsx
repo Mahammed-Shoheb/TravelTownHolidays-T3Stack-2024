@@ -256,6 +256,13 @@ export default function AddPackage() {
   };
 
   const handleDetailsAddition = (details: Details) => {
+    const isDuplicate = content.packageDetails.find(
+      (temp) => temp.sectionName == details.sectionName,
+    );
+    if (isDuplicate) {
+      toast.error(`Day ${details.sectionName} already exist`);
+      return;
+    }
     if (details) {
       setContent((prevContent) => ({
         ...prevContent,
@@ -307,6 +314,7 @@ export default function AddPackage() {
       }));
     }
   };
+
   const handleItineraryEdit = (itinerary: Itinerary) => {
     if (itinerary) {
       setContent((prevContent) => ({
@@ -330,7 +338,9 @@ export default function AddPackage() {
     setContent((prevContent) => ({
       ...prevContent,
       packageItinerary: [
-        ...prevContent.packageItinerary.filter((_, i) => i !== index),
+        ...prevContent.packageItinerary
+          .filter((_, i) => i !== index)
+          .sort((a, b) => a.day - b.day),
       ],
     }));
   };
@@ -640,7 +650,10 @@ export default function AddPackage() {
               })}
             {data?.destinations.map((destination) => {
               return (
-                <li className="align-section-center section-bg-white my-4 py-4">
+                <li
+                  className="align-section-center section-bg-white my-4 py-4"
+                  key={destination.id}
+                >
                   <h2 className="mb-4 text-xl font-bold uppercase">
                     {destination.name}
                   </h2>
