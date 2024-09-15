@@ -894,8 +894,6 @@ export const adminRouter = createTRPCRouter({
             id: true,
           },
         });
-        console.log(existingCategories, categories, input.PackageCategories);
-
         await ctx.db.package.update({
           where: {
             id: input.id,
