@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     url: `https://traveltownholidays.com/international-packages`,
     images: [
       {
-        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725082866/Travel%20Town%202024/domestic-internation-page/pexels-aaditya-arora-188236-592753_ckuzcb.jpg",
+        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1726307225/Travel%20Town%202024/domestic-internation-page/International_Image_cgzk9i.png",
         width: 800,
         height: 600,
         alt: "world map",
@@ -35,7 +35,7 @@ export default async function page() {
     <main>
       <PageHero
         src={
-          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725082866/Travel%20Town%202024/domestic-internation-page/pexels-aaditya-arora-188236-592753_ckuzcb.jpg"
+          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1726307225/Travel%20Town%202024/domestic-internation-page/International_Image_cgzk9i.png"
         }
         alt="world map"
       />

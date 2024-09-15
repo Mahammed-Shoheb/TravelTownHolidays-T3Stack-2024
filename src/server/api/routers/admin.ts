@@ -862,6 +862,26 @@ export const adminRouter = createTRPCRouter({
             message: "Package is not found",
           });
         }
+
+        const packageDestination = await ctx.db.destination.findUnique({
+          where: {
+            name: input.packageDestination,
+          },
+          select: {
+            id: true,
+          },
+        });
+        if (!packageDestination) {
+          throw new Error("Package Destination not found");
+        }
+        const existingCategories = await ctx.db.package.findUnique({
+          where: { id: input.id },
+          select: {
+            categories: {
+              select: { id: true },
+            },
+          },
+        });
         const categories = await ctx.db.category.findMany({
           where: {
             name: {
@@ -874,24 +894,17 @@ export const adminRouter = createTRPCRouter({
             id: true,
           },
         });
-        const packageDestination = await ctx.db.destination.findUnique({
-          where: {
-            name: input.packageDestination,
-          },
-          select: {
-            id: true,
-          },
-        });
-        if (!categories || !packageDestination) {
-          throw new Error("Hotel Destination not found");
-        }
+        console.log(existingCategories, categories, input.PackageCategories);
+
         await ctx.db.package.update({
           where: {
             id: input.id,
           },
           data: {
             categories: {
-              deleteMany: {},
+              disconnect: existingCategories?.categories.map((category) => ({
+                id: category.id,
+              })),
             },
             itinerary: {
               deleteMany: {},

@@ -186,12 +186,10 @@ export default function AddHotel() {
   };
 
   const handleSectionDetails = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        hotelSectionDetails: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      hotelSectionDetails: [...paragraph],
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

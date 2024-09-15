@@ -66,12 +66,10 @@ export default function AddPackageDetails({
   };
 
   const handleParagraphAddition = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setNewDetails((prev) => ({
-        ...prev,
-        sectionDetails: [...paragraph],
-      }));
-    }
+    setNewDetails((prev) => ({
+      ...prev,
+      sectionDetails: [...paragraph],
+    }));
   };
 
   const handleEditing = (id: number) => {

@@ -61,12 +61,10 @@ export default function AddPackageItinerary({
   };
 
   const handleParagraphAddition = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setNewItinerary((prev) => ({
-        ...prev,
-        details: [...paragraph],
-      }));
-    }
+    setNewItinerary((prev) => ({
+      ...prev,
+      details: [...paragraph],
+    }));
   };
 
   const handleEditing = (id: number) => {

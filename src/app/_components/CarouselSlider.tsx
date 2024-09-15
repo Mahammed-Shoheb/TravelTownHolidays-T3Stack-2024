@@ -72,9 +72,6 @@ export default function CarouselSlider({
       </div>
       <Slider ref={sliderRef} {...settings}>
         {children}
-        {children}
-        {children}
-        {children}
       </Slider>
     </div>
   );

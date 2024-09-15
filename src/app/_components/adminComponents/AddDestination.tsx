@@ -156,12 +156,10 @@ export default function AddDestination() {
   };
 
   const handleDescriptionAddition = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        destinationDescription: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      destinationDescription: [...paragraph],
+    }));
   };
 
   const handleCancel = () => {

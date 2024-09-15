@@ -247,12 +247,10 @@ export default function AddPackage() {
   };
 
   const handleCategoriesAddition = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        PackageCategories: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      PackageCategories: [...paragraph],
+    }));
   };
 
   const handleDetailsAddition = (details: Details) => {

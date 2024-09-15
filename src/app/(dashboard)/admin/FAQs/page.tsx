@@ -119,12 +119,10 @@ export default function FAQs() {
   };
 
   const handleAnswerAddition = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        answer: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      answer: [...paragraph],
+    }));
   };
 
   const handleDelete = (id: string) => {

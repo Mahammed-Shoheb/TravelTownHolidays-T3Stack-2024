@@ -171,12 +171,10 @@ export default function AddHotelDestination() {
   };
 
   const handleDescriptionAddition = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        hotelDestinationDescription: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      hotelDestinationDescription: [...paragraph],
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -206,12 +204,10 @@ export default function AddHotelDestination() {
   };
 
   const handleSectionDetails = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        hotelDestinationSectionDetails: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      hotelDestinationSectionDetails: [...paragraph],
+    }));
   };
 
   const handleDelete = (id: string) => {

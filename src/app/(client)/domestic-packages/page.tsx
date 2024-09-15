@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     url: `https://traveltownholidays.com/domestic-packages`,
     images: [
       {
-        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725084870/Travel%20Town%202024/domestic-internation-page/ohtilly-2iu_qKPbjSk-unsplash_ljn6og.jpg",
+        url: "https://res.cloudinary.com/dp2hek0t3/image/upload/v1726307209/Travel%20Town%202024/domestic-internation-page/Domestic_Image_ni9wqm.png",
         width: 800,
         height: 600,
         alt: "map of india with coins",
@@ -35,7 +35,7 @@ export default async function page() {
     <main>
       <PageHero
         src={
-          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725084870/Travel%20Town%202024/domestic-internation-page/ohtilly-2iu_qKPbjSk-unsplash_ljn6og.jpg"
+          "https://res.cloudinary.com/dp2hek0t3/image/upload/v1726307209/Travel%20Town%202024/domestic-internation-page/Domestic_Image_ni9wqm.png"
         }
         alt="map of india with coins"
       />

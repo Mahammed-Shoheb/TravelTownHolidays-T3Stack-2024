@@ -24,7 +24,7 @@ export default function Footer({ footerLinks }: { footerLinks: FooterLinks }) {
         <p
           aria-hidden="true"
           role="presentation"
-          className="text-center font-serif text-[2.5rem] sm:text-[3.5rem] md:text-[4rem] lg:text-[7.5rem]"
+          className="text-center font-serif text-[2rem] sm:text-[3.5rem] md:text-[4rem] lg:text-[7.5rem]"
         >
           <span role="presentation" aria-hidden="true">
             Travel Town Holidays

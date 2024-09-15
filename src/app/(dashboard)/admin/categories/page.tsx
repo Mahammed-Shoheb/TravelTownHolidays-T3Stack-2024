@@ -131,12 +131,10 @@ export default function Categories() {
   };
 
   const handleDescriptionAddition = (paragraph: string[]) => {
-    if (paragraph.length) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        categoryDescription: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      categoryDescription: [...paragraph],
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

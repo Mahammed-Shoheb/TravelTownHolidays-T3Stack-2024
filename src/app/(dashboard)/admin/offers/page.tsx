@@ -186,21 +186,17 @@ export default function Page() {
   };
 
   const handleDescriptionAddition = (paragraph: string[]) => {
-    if (paragraph) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        description: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      description: [...paragraph],
+    }));
   };
 
   const handleSectionDetails = (paragraph: string[]) => {
-    if (paragraph) {
-      setContent((prevContent) => ({
-        ...prevContent,
-        sectionDetails: [...paragraph],
-      }));
-    }
+    setContent((prevContent) => ({
+      ...prevContent,
+      sectionDetails: [...paragraph],
+    }));
   };
 
   const handleCancel = () => {
