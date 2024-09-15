@@ -28,12 +28,10 @@ export const metadata: Metadata = {
     "Domestic Travel Deals",
     "Family Vacation Packages",
     "Luxury Travel Experiences",
-    "Adventure Tours",
     "Best Travel Deals for International Destinations",
     "Affordable Holiday Packages for Families",
     "Customizable Travel Packages for Couples",
     "Top Domestic Travel Packages in India",
-    "Luxury Vacation Packages at Affordable Prices",
     "traveltownholidays",
     "Travel Town Holidays Reviews",
     "Travel Town Holidays Packages",
@@ -191,10 +189,10 @@ export default async function Home() {
                 height={400}
                 loading="lazy"
                 className="mb-4 h-60 w-auto rounded-lg object-cover shadow-md sm:h-48 lg:h-64"
-                // placeholder="blur"
-                // blurDataURL={await dynamicBlurDataUrl(
-                //   "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725076647/Travel%20Town%202024/Home%20Page%20images/laptop-2557615_1280_pz4rv6.jpg",
-                // )}
+                placeholder="blur"
+                blurDataURL={await dynamicBlurDataUrl(
+                  "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725076647/Travel%20Town%202024/Home%20Page%20images/laptop-2557615_1280_pz4rv6.jpg",
+                )}
               />
               <div className="sm:ps-4">
                 <h3 className="font-semibold">
@@ -230,10 +228,10 @@ export default async function Home() {
                 height={400}
                 loading="lazy"
                 className="mb-4 h-60 w-auto rounded-lg object-cover shadow-md sm:h-48 lg:h-64"
-                // placeholder="blur"
-                // blurDataURL={await dynamicBlurDataUrl(
-                //   "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725078366/Travel%20Town%202024/Home%20Page%20images/pexels-alex-green-5699475_pthgud.jpg",
-                // )}
+                placeholder="blur"
+                blurDataURL={await dynamicBlurDataUrl(
+                  "https://res.cloudinary.com/dp2hek0t3/image/upload/v1725078366/Travel%20Town%202024/Home%20Page%20images/pexels-alex-green-5699475_pthgud.jpg",
+                )}
               />
             </div>
             <div className="relative mb-8 grid items-center justify-items-center sm:grid-cols-2 sm:gap-8">
@@ -247,10 +245,10 @@ export default async function Home() {
                 height={400}
                 loading="lazy"
                 className="mb-4 h-60 w-auto rounded-lg object-cover shadow-md sm:h-48 lg:h-64"
-                // placeholder="blur"
-                // blurDataURL={await dynamicBlurDataUrl(
-                //   "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724766061/Travel%20Town%202024/Home%20Page%20images/pexels-olly-712413_x6daz6.jpg",
-                // )}
+                placeholder="blur"
+                blurDataURL={await dynamicBlurDataUrl(
+                  "https://res.cloudinary.com/dp2hek0t3/image/upload/v1724766061/Travel%20Town%202024/Home%20Page%20images/pexels-olly-712413_x6daz6.jpg",
+                )}
               />
               <div className="sm:ps-4">
                 <h3 className="font-semibold">Transparency & Peace of Mind</h3>
